@@ -1,0 +1,96 @@
+﻿@model IEnumerable<WebSiteBanHang.Models.UserProduct>
+@{
+    ViewBag.Title = "search";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+       
+    <div class="card card-success">
+        <div class="card-header">
+            <h3 class="card-title">Search</h3>
+
+            <div class="card-tools">
+                @using (Html.BeginForm())
+                {
+                    <div class="input-group input-group-sm" style="width: 150px;">
+                        <input type="text" name="searchNameUser" class="form-control float-right" placeholder="Search">
+
+                        <div class="input-group-append">
+                            <button type="submit" class="btn btn-default">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+        <div class="card-body">
+            <table class="table table-head-fixed text-nowrap">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayName("review")
+                        </th>
+                        <th>
+                            @Html.DisplayName("name")
+                        </th>
+                        <th>
+                            @Html.DisplayName("email")
+                        </th>
+                        <th>
+                            @Html.Label("Edit")
+                        </th>
+                        <th>
+                            @Html.Label("Delete")
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.reviewUser)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.nameUser)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.emailUser)
+                            </td>
+                            <td>
+                                @Html.ActionLink("Edit", "Edit", new { id = item.idUser }, new { @class = "btn btn-outline-primary" })
+                            </td>
+                            <td>
+                                @Html.ActionLink("Delete", "Delete2", new { id = item.idUser }, new { @OnClick = "remove()", @class = "btn btn-outline-danger " })
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <th>
+                            @Html.DisplayName("review")
+                        </th>
+                        <th>
+                            @Html.DisplayName("name")
+                        </th>
+                        <th>
+                            @Html.DisplayName("email")
+                        </th>
+                        <th>
+                            @Html.Label("Edit")
+                        </th>
+                        <th>
+                            @Html.Label("Delete")
+                        </th>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+
+</div>
+
+

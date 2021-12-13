@@ -1,0 +1,99 @@
+﻿@model IEnumerable<WebSiteBanHang.Models.Product>
+
+@{
+    ViewBag.Title = "search";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+
+    <div class="card card-success">
+        <div class="card-header">
+            <h3 class="card-title">Search</h3>
+
+            <div class="card-tools">
+                @using (Html.BeginForm())
+                {
+                    <div class="input-group input-group-sm" style="width: 150px;">
+                        <input type="text" name="searchNameProduct" class="form-control float-right" placeholder="Search">
+
+                        <div class="input-group-append">
+                            <button type="submit" class="btn btn-default">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+        <!-- /.card-header -->
+        <div class="card-body table-responsive p-0">
+            <table class="table  table-head-fixed text-nowrap">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Picture</th>
+                        <th>Price</th>
+                        <th>Rate</th>
+                        <th>Quality</th>
+                        <th>Weight</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.nameProduct)
+                            </td>
+                            <td>
+                                @{
+                                    string ImagePath = "~/wwwroot/dataImage/" + item.pictureProduct;
+                                }
+                                <img src="@Url.Content(ImagePath)" width="100" class="img-thumbnail" />
+                                @Html.DisplayFor(modelItem => item.pictureProduct)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.priceProduct)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.rateProduct)
+                            </td>
+                            <td>
+
+                                @Html.DisplayFor(modelItem => item.qualityProduct)
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.weightProduct)
+                            </td>
+
+                            <td>
+                                @Html.ActionLink("Edit", "Edit", new { id = item.idProduct }, new { @class = "btn btn-outline-primary" })
+                            </td>
+                            <td>
+                                @Html.ActionLink("Delete", "Delete2", new { id = item.idProduct }, new { @OnClick = "remove()", @class = "btn btn-outline-danger " })
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <th>Name</th>
+                        <th>Picture</th>
+                        <th>Price</th>
+                        <th>Rate</th>
+                        <th>Quality</th>
+                        <th>Weight</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+        <!-- /.card-body -->
+    </div>
+
+</div>
